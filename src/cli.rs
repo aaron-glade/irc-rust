@@ -1,4 +1,4 @@
-use clap::{Parser, Subcommand, Args};
+use clap::{Args, Parser, Subcommand};
 
 #[derive(Parser, Debug)]
 #[command(name = "irc")]
@@ -8,7 +8,6 @@ pub struct Cli {
     #[command(subcommand)]
     pub command: Commands,
 }
-
 
 #[derive(Subcommand, Debug)]
 pub enum Commands {
@@ -34,10 +33,9 @@ pub struct HostArgs {
 #[derive(Args, Debug)]
 pub struct ServerArgs {
     pub address: Option<String>, // Defaults to 0.0.0.0
-    pub port: Option<String>, // Defaults to 8080
+    pub port: Option<String>,    // Defaults to 8080
 }
 
 pub fn parse() -> Cli {
-    Cli::parse()    
+    Cli::parse()
 }
-

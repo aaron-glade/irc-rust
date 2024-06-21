@@ -14,9 +14,9 @@ pub fn start_server(server_args: ServerArgs) -> std::io::Result<()> {
         match stream {
             Ok(stream) => {
                 println!("New connection from: {}", stream.peer_addr()?);
-                thread::spawn(move || {handle_connection(stream)});
-            },
-            Err(e) => return Err(e)
+                thread::spawn(move || handle_connection(stream));
+            }
+            Err(e) => return Err(e),
         }
     }
     Ok(())
@@ -25,12 +25,12 @@ pub fn start_server(server_args: ServerArgs) -> std::io::Result<()> {
 fn create_listen_addr(server_args: ServerArgs) -> String {
     let address = match server_args.address {
         Some(a) => a,
-        None => "192.168.1.232".to_string()
+        None => "192.168.1.232".to_string(),
     };
 
     let port = match server_args.port {
         Some(p) => p,
-        None => "8080".to_string()
+        None => "8080".to_string(),
     };
 
     format!("{address}:{port}")
