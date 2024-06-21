@@ -14,6 +14,7 @@ pub struct Cli {
 pub enum Commands {
     Connect(ConnectArgs),
     Host(HostArgs),
+    Server(ServerArgs),
     List,
 }
 
@@ -28,6 +29,12 @@ pub struct HostArgs {
     pub title: String,
     pub description: Option<String>,
     pub host_name: Option<String>,
+}
+
+#[derive(Args, Debug)]
+pub struct ServerArgs {
+    pub address: Option<String>, // Defaults to 0.0.0.0
+    pub port: Option<String>, // Defaults to 8080
 }
 
 pub fn parse() -> Cli {
